@@ -10,5 +10,13 @@
     {{ form.as_p }}
     <button type="submit">Registrarse</button>
 </form>
-<a href="{% url 'login' %}">¿Ya tenés cuenta? Iniciar sesión</a>
+<a href="{% url 'login' %}">¿Ya tenés cuenta? Iniciar sesión</a>       
+           
+<footer class="bg-dark text-white mt-5 p-4 text-center">      
+<p>Proyecto desarrollado por Santi &copy;{% now "Y" %}</p>
+<p>Este sitio fue creado como parte de un proyecto educativo usando Django.</p>
+<div>
+      <a href="https://github.com/santiaggoo" target="_blank" class="text-light mx-2">GitHub</a>
+</div>
+</footer>         
 </body>
