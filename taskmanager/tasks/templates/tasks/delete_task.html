@@ -1,0 +1,9 @@
+ <h2>¿Estás seguro que querés eliminar esta tarea?</h2>
+ <body>
+  <p>{{ task.title }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'task_list' %}">Cancelar</a>
+  </form>
+ </body>

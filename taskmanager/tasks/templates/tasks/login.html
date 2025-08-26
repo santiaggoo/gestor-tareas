@@ -1,0 +1,14 @@
+{% load static %}
+<h2>Iniciar sesión</h2>
+<body>
+    <head>
+         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    </head>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Entrar</button>
+</form>
+<a href="{% url 'register' %}">¿No tenés cuenta? Registrate</a>
+</body>

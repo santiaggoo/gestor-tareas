@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Tareas</title> 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <h2>Mis Tareas</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - 
+                {% if task.completed %}
+                      Completado
+                {% else %}
+                      No completado ❌
+                {% endif %}
+                <a href="{% url "editar" task.id %}">Editar</a>
+                <a href="{% url "eliminar" task.id %}">Eliminar</a>
+            </li>
+        {% empty %}
+            <li>No tienes tareas aún.</li>
+        {% endfor %}
+        <a href="{% url "create-task" %}">Agrega una nueva Tarea</a>
+    </ul>
+    <a href="{% url "logout" %}">Cerrar sesión</a>
+</body>
+</html>
