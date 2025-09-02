@@ -1,30 +1,47 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Mis Tareas</title> 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
+  <meta charset="UTF-8">
+  <title>Mis Tareas</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>Mis Tareas</h2>
-    <ul>
+<body class="bg-light">
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Mis Tareas</h2>
+      <a href="{% url 'create-task' %}" class="btn btn-primary">+ Nueva Tarea</a>
+    </div>
+
+    {% if tasks %}
+      <ul class="list-group">
         {% for task in tasks %}
-            <li>
-                <strong>{{ task.title }}</strong> - 
-                {% if task.completed %}
-                      Completado
-                {% else %}
-                      No completado ❌
-                {% endif %}
-                <a href="{% url "editar" task.id %}">Editar</a>
-                <a href="{% url "eliminar" task.id %}">Eliminar</a>
-            </li>
-        {% empty %}
-            <li>No tienes tareas aún.</li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ task.title }}</strong>
+              {% if task.completed %}
+                <span class="badge bg-success ms-2">Completado</span>
+              {% else %}
+                <span class="badge bg-warning text-dark ms-2">Pendiente</span>
+              {% endif %}
+            </div>
+            <div>
+              <a href="{% url 'editar' task.id %}" class="btn btn-sm btn-outline-secondary me-2">Editar</a>
+              <a href="{% url 'eliminar' task.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+            </div>
+          </li>
         {% endfor %}
-        <a href="{% url "create-task" %}">Agrega una nueva Tarea</a>
-    </ul>
-    <a href="{% url "logout" %}">Cerrar sesión</a>
+      </ul>
+    {% else %}
+      <div class="alert alert-info">No tienes tareas aún.</div>
+    {% endif %}
+
+    <div class="mt-4 text-end">
+      <a href="{% url 'logout' %}" class="btn btn-outline-dark">Cerrar sesión</a>
+    </div>
+  </div>
+
 </body>
 </html>
